@@ -1,0 +1,8 @@
+import base64
+
+
+def  decrypt_data(data):
+    data=base64.b64decode(data)
+    print((data.decode()))
+    return  data.decode()
+

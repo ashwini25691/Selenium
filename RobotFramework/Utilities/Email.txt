@@ -1,0 +1,375 @@
+import pandas as pd
+import xlwings as xw
+import xlrd
+import os
+import subprocess
+import sys
+from pathlib import Path
+import datetime
+import shutil
+from datetime import date
+from shutil import copyfile
+import smtplib
+from email.mime.text import MIMEText
+import win32com.client
+
+def EmailNotification(strEmailSubject):
+    outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+    inbox = outlook.GetDefaultFolder(6)
+    emails = inbox.Items
+    for email in emails:
+        if strEmailSubject in email.Subject:
+            print(strEmailSubject)
+            return True
+            break
+
+
+def SendEmail():
+    strProjectWorkingDirectory = str(Path(__file__).parents[1])
+    CustomLogfile = strProjectWorkingDirectory + "\CustomLogfile.txt"
+    PreReqLogfile = strProjectWorkingDirectory + "\PreReq_CustomLogfile.txt"
+    strProjectName= os.path.basename(strProjectWorkingDirectory)
+    ResultDirName = os.environ['ResultDirName']
+    shutil.make_archive(ResultDirName, 'zip', ResultDirName)
+    prereq_exectime_mins=0
+    prereq_exectime_secs=0
+    if os.path.getsize(CustomLogfile) != 0:
+        file = open(CustomLogfile, "r")
+        curdate = str(date.today())
+        curdate_formatted = curdate.replace("-", "")
+        f = curdate_formatted
+        lsttime = []
+        for line in file:
+            if f in line:
+                line1 = line.replace("</td>", "")
+                line2 = line1.replace("<td id=\"td\" align=\"left\">", '')
+                line3 = line2.lstrip()
+                line4 = line3.replace("\n", "")
+                lsttime.append(line4)
+        lsttime = sorted(lsttime)
+        start_time = lsttime[0]
+        end_time = lsttime[len(lsttime) - 1]
+        datetimeFormat = '%Y%m%d %H:%M:%S.%f'
+        diff = datetime.datetime.strptime(end_time, datetimeFormat) \
+               - datetime.datetime.strptime(start_time, datetimeFormat)
+        exectime_mins = (diff.seconds) // 60
+        exectime_secs = (diff.seconds) % 60
+        print("The total elapsed time is " + str(exectime_mins) + "mins " + str(exectime_secs) + "secs")
+
+    if os.path.getsize(PreReqLogfile) != 0:
+        file = open(PreReqLogfile, "r")
+        curdate = str(date.today())
+        curdate_formatted = curdate.replace("-", "")
+        f = curdate_formatted
+        lsttime = []
+        for line in file:
+            if f in line:
+                line1 = line.replace("</td>", "")
+                line2 = line1.replace("<td id=\"td\" align=\"left\">", '')
+                line3 = line2.lstrip()
+                line4 = line3.replace("\n", "")
+                lsttime.append(line4)
+        lsttime = sorted(lsttime)
+        start_time = lsttime[0]
+        end_time = lsttime[len(lsttime) - 1]
+        datetimeFormat = '%Y%m%d %H:%M:%S.%f'
+        diff = datetime.datetime.strptime(end_time, datetimeFormat) \
+               - datetime.datetime.strptime(start_time, datetimeFormat)
+        if diff.seconds!=0:
+            prereq_exectime_mins = (diff.seconds) // 60
+            prereq_exectime_secs = (diff.seconds) % 60
+        else:
+            prereq_exectime_mins=0
+            prereq_exectime_secs=0
+
+        print("The total elapsed time for prereq checks is " + str(prereq_exectime_mins) + "mins " + str(prereq_exectime_secs) + "secs")
+
+
+    if os.path.getsize(CustomLogfile) != 0:
+
+        f = open(CustomLogfile, "r")
+        part_SUBCONTENT_raw = f.readlines()
+        f.close()
+        part_SUBCONTENT = ''.join(part_SUBCONTENT_raw)
+    else:
+
+        part_SUBCONTENT = ''
+        exectime_mins = 0
+        exectime_secs = 0
+
+    if os.path.getsize(PreReqLogfile) != 0:
+        f = open(PreReqLogfile, "r")
+        part_PREREQSUBCONTENT_raw = f.readlines()
+        f.close()
+        part_PREREQSUBCONTENT = ''.join(part_PREREQSUBCONTENT_raw)
+    else:
+
+        part_PREREQSUBCONTENT = ''
+        exectime_mins = 0
+        exectime_secs = 0
+
+    strEnv = os.environ['DataSource']
+    sonarqubeurl="http://cto-sonar-as.nomura.com:9000/dashboard?id=" + str(strProjectName)
+    ParallelProcess = (os.environ['Process'])
+
+    # part_SUBCONTENT=part_SUBCONTENT.replace("""\n', '""","""""")
+    PREREQ_SUBCONTENT = """        <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 16pt; font-weight: bold; color: #000; background:#CCCCCC; width:33%; -webkit-text-size- adjust:25%;" class="heading" width="25%"><span style="color: #000; font-size: 10pt; font-weight:bold; -webkit-text-size-adjust:25%;" class="date">
+
+                                    </span>
+                            </th>
+                      <tr>
+                            <td style="padding: 10px 20px 10px 10px; 10px; font-size: 10pt; color: #000; -webkit-text-size-adjust:100%;">	
+                                            <table border="1" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="subtable">
+                                            <tr style="font-weight:bold">
+                                                   <th id="th" align="center&quot;" colspan="7" >PreRequisite Checkpoints</th>                  
+                                              </tr>
+                                             <tr style="font-weight:bold">
+                                                   <th id="th" align="left&quot;">Test Case Name</th>
+                                                    <th id="th" align="left">Execution Start Time</th>   
+                                                    <th id="th" align="left">Execution End Time</th> 
+                                                    <th id="th" align="left">Total Execution Time (Sec)</th>
+                                                    <th id="th" align="left&quot;">Status</th>
+                                                    <th id="th" align="left&quot;">Tested by Zephyr Jira</th>
+                                                    <th id="th" align="left&quot;">Comments</th>
+                                              </tr>""" + str(part_PREREQSUBCONTENT) + """</table>
+                      </tr>"""
+    SUBCONTENT = """        <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 16pt; font-weight: bold; color: #000; background:#CCCCCC; width:33%; -webkit-text-size- adjust:25%;" class="heading" width="25%"><span style="color: #000; font-size: 10pt; font-weight:bold; -webkit-text-size-adjust:25%;" class="date">
+
+                                </span>
+                        </th>
+                  <tr>
+                        <td style="padding: 10px 20px 10px 10px; 10px; font-size: 10pt; color: #000; -webkit-text-size-adjust:100%;">	
+                                        <table border="1" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="subtable">
+                                        <tr style="font-weight:bold">
+                                               <th id="th" align="center&quot;" colspan="7" >Test Execution Status</th>                  
+                                          </tr>
+                                         <tr style="font-weight:bold">
+                                               <th id="th" align="left&quot;">Test Case Name</th>
+                                                <th id="th" align="left">Execution Start Time</th>   
+                                                <th id="th" align="left">Execution End Time</th> 
+                                                <th id="th" align="left">Total Execution Time (Sec)</th>
+                                                <th id="th" align="left&quot;">Status</th>
+                                                <th id="th" align="left&quot;">Tested by Zephyr Jira</th>
+                                                <th id="th" align="left&quot;">Comments</th>
+                                          </tr>""" + str(part_SUBCONTENT) + """</table>
+                  </tr>"""
+    JenkinsSUBCONTENT = """        <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 16pt; font-weight: bold; color: #000; background:#CCCCCC; width:33%; -webkit-text-size- adjust:25%;" class="heading" width="25%"><span style="color: #000; font-size: 10pt; font-weight:bold; -webkit-text-size-adjust:25%;" class="date">
+
+                                                </span>
+                                        </th>
+                                  <tr>
+                                        <td style="padding: 10px 20px 10px 10px; 10px; font-size: 10pt; color: #000; -webkit-text-size-adjust:100%;">	
+                                                        <table border="1" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="subtable">
+
+                                                         <tr style="font-weight:bold">
+
+                                                                <th id="th" align="left">Jenkins Pipeline - Checkpoints</th>                             	                                
+                                                                <th id="th" align="left&quot;">Status</th>
+                                                          </tr>
+                                                         <tr style="font-weight:bold">
+                                                                <td id="td" align="left">Checkout SCM</td>                                                      
+                                                                <td id="td" align="left"><font color=green>PASS</font></td>
+                                                         </tr
+                                                         <tr style="font-weight:bold">
+                                                                <td id="td" align="left">SonarQube Analysis</td>  
+                                                                <style>
+                                                                a:link, a:visited {
+                                                                  #background-color: white;
+                                                                  color: darkblue;
+                                                                  padding: 15px 25px;
+                                                                  text-align: center;
+                                                                  font-weight:bold
+                                                                }
+                                                                </style>
+                                                                 
+                                                                <td id="td" align="left"><a href=""" + str(sonarqubeurl) + """ target="_blank" >PASS</a></font></td> 
+                                                                
+
+                                                        </tr>
+                                                        <tr style="font-weight:bold">
+                                                                <td id="td" align="left">Deploy code on server machine using Ansible</td>
+
+                                                                <td id="td" align="left"><font color=green>PASS</font></td>
+                                                        </tr>
+                                                        <tr style="font-weight:bold">
+                                                                <td id="td" align="left">Testing the code on server machine</td>
+                                                                <td id="td" align="left"><font color=green>PASS</font></td>
+                                                        </tr> """
+
+    msg = MIMEText("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                          <html xmlns="http://www.w3.org/1999/xhtml">
+                          <head>
+                          <title>GFA-PeopleSoft Automated Test Execution On Non Production Environment</title>
+                          <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+                          <meta name="viewport" content="width=device-width" />
+                          <style media="screen" type="text/css">
+                                  #maintable {border: solid #CECECE 1px; width:720px;}
+                                  #subtable {border: solid #CECECE 1px; width:690px;}
+                                  #banner{width: 720px; height: 76px;}
+                                  a, a:link, a:active, a:visited, a:hover {color: #c00;}
+                                  body {font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 10pt;}
+                                  body {background: #F3F3F3; -webkit-text-size-adjust:250%;}
+                                  .heading {font-size: 16pt; font-weight: bold; color: #000; width:100%;}
+                                  .heading1 {font-size: 14pt; font-weight: bold; color: #000; width:100%;}
+                                  .heading2 {font-size: 10pt; font-weight: bold; color: #000; width:100%;}
+                                  .date { color: #000; font-size: 10pt; font-weight:normal;}
+                                  td {padding: 5px; font-size: 10pt; color: #000; }
+                                  th{text-align: left; padding: 10px 20px 10px 10px; font-size: 8pt; white-space: nowrap;background:#CCCCCC;}
+                                  th span{text-align: left; padding: 0 10px 10px 0;}
+                                  #th{text-align: left; padding: 10px 10px 10px 10px; font-size: 8pt; white-space: nowrap;background:#CCCCCC;}
+                                  #th span{text-align: left; padding: 0 10px 8px 0;}
+                                  #td {padding: 10px 10px 10px 10px; font-size: 8pt; color: #000; white-space: nowrap; background:#ececec; vertical-align:text-top;}
+                                  #td1 {padding: 10px 10px 10px 10px; font-size: 8pt; font-weight: bold; color: #000; white-space: nowrap; background:#f2bfbf; vertical-align:text-top;}
+                                  #td2 {padding: 10px 10px 10px 10px; font-size: 8pt; color: #000; width: 200px; word-wrap: break-word; background:#ececec; vertical-align:text-top;}
+                                  #th span{text-align: left; padding: 0 5px 5px 0;}
+                                  #err {padding: 10px 10px 10px 10px; font-size: 8pt; white-space: nowrap; color: #c00; background:#ececec; vertical-align:text-top;}
+                                  h1{color: #000 ;font-size: 12pt; font-weight:bold;}
+                                  h2{color: #000 ;font-size: 10pt; font-weight:bold; text-decoration:underline;}
+                                  li{list-style:square;}
+                          </style>
+                          </head>
+                          <body>
+                           <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" id="maintable">
+                            <tr>
+                                 <td style="padding: 0;"><img src="http://www.nomura.com/emails/13/corporate-email-signaturegraphic.jpg" id="banner" alt="Nomura" /></td>
+                            </tr>
+                            <tr>
+                                  <td align="right">For internal use only. Do not redistribute</td>
+                            </tr>
+                            <tr>
+                                 <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 14pt; font-weight: bold; color: #000; background:#CCCCCC; width:100%; -webkit-text-size- adjust:250%;" class="heading" width="100%">
+                                 <span style="color: #000; font-size: 12pt; font-weight:bold; -webkit-text-size-adjust:250%;" class="date">GFA - PeopleSoft Build Status 
+                                  <br/>   Jenkins Pipeline Stage Details        
+                                          </span>
+                                  </th>
+                            </tr>""" + str(JenkinsSUBCONTENT) + """        </td>
+                            </tr>
+                            </table>
+                            
+                            <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" id="maintable">
+                            <tr>
+                                <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 14pt; font-weight: bold; color: #000; background:#CCCCCC; width:100%; -webkit-text-size- adjust:250%;" class="heading" width="100%">
+                                 <span style="color: #000; font-size: 12pt; font-weight:bold; -webkit-text-size-adjust:250%;" class="date">GFA - PeopleSoft Infrastructure Automated Test Run Details  
+                                 <br/>   Environment : """ + strEnv + """
+                                 <br/>   Region : """ + os.environ["Region"] + """
+                                 <br/>  Parallel Execution : """ +str(ParallelProcess) +""" 
+                                 <br/>   Total Execution Time : """ + str(exectime_mins+prereq_exectime_mins) + """mins """ + str(
+                exectime_secs+prereq_exectime_secs) + """secs
+                                          </span>
+                                  </th>     
+                                </tr>                               
+                                    <tr>""" + str(PREREQ_SUBCONTENT) + """        </tr>
+                            </table>         
+                         <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" id="maintable">
+                            <tr>
+                                <th style="text-align: left; padding: 0px 0px 0px 0px; font-size: 0pt; font-weight: bold; color: #000; background:#0000 width:0%; -webkit-text-size- adjust:0%;" class="heading" width="0%">
+                            </tr>
+                            <tr>""" + str(SUBCONTENT) + """        </tr>
+                        </table> 
+                           
+  
+                          </body>
+                          </html>""", 'html')
+
+    msg['Subject'] = (os.environ['EmailSubject']) + "-"  + strEnv
+    msg['From'] = os.environ['EmailFrom']
+    msg['To'] = os.environ['EmailTo']
+
+
+    s = smtplib.SMTP('mailhost.***.com')
+    s.sendmail(os.environ['EmailFrom'], os.environ['EmailTo'],msg.as_string())
+    s.quit()
+
+
+def Generate_Notification_Email(strSubject, strEnv, strBD, Point1, Point2):
+    # This prints a passed string into this function
+
+    strEmailContent = """<tr style="font-weight:bold">
+     				<td id="td" align="left"> 
+     				<ul><li>""" + str(Point1) + """</li>
+     				<li>""" + str(Point2) + """</li></ul></td></tr>"""
+    part_SUBCONTENT = strEmailContent
+    # EvidenceLink = " \"" + myemailresultdir + "\" "
+
+    SUBCONTENT = """        <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 16pt; font-weight: bold; color: #000; background:#CCCCCC; width:33%; -webkit-text-size- adjust:25%;" class="heading" width="25%"><span style="color: #000; font-size: 10pt; font-weight:bold; -webkit-text-size-adjust:25%;" class="date">
+
+    	                </span>
+    	        </th>
+    	  <tr>
+    	        <td style="padding: 10px 20px 10px 10px; 10px; font-size: 10pt; color: #000; -webkit-text-size-adjust:100%;">	
+    	                        <table border="1" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="subtable">
+
+    	                         <tr style="font-weight:bold">
+    	                               <th id="th" align="left&quot;">Notification To Peoplesoft Users:</th>
+
+
+    	                          </tr>""" + part_SUBCONTENT + """</table>
+    	  </tr>"""
+    msg = MIMEText("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <title>GFA-Balance Reconciliation-PeopleSoft/DataMart Non Production Environment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta name="viewport" content="width=device-width" />
+    <style media="screen" type="text/css">
+            #maintable {border: solid #CECECE 1px; width:720px;}
+            #subtable {border: solid #CECECE 1px; width:690px;}
+            #banner{width: 720px; height: 76px;}
+            a, a:link, a:active, a:visited, a:hover {color: #c00;}
+            body {font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 10pt;}
+            body {background: #F3F3F3; -webkit-text-size-adjust:250%;}
+            .heading {font-size: 16pt; font-weight: bold; color: #000; width:100%;}
+            .heading1 {font-size: 14pt; font-weight: bold; color: #000; width:100%;}
+            .heading2 {font-size: 10pt; font-weight: bold; color: #000; width:100%;}
+            .date { color: #000; font-size: 10pt; font-weight:normal;}
+            td {padding: 5px; font-size: 10pt; color: #000; }
+            th{text-align: left; padding: 10px 20px 10px 10px; font-size: 8pt; white-space: nowrap;background:#CCCCCC;}
+            th span{text-align: left; padding: 0 10px 10px 0;}
+            #th{text-align: left; padding: 10px 10px 10px 10px; font-size: 8pt; white-space: nowrap;background:#CCCCCC;}
+            #th span{text-align: left; padding: 0 10px 8px 0;}
+            #td {padding: 10px 10px 10px 10px; font-size: 8pt; color: #000; white-space: nowrap; background:#ececec; vertical-align:text-top;}
+            #td1 {padding: 10px 10px 10px 10px; font-size: 8pt; font-weight: bold; color: #000; white-space: nowrap; background:#f2bfbf; vertical-align:text-top;}
+            #td2 {padding: 10px 10px 10px 10px; font-size: 8pt; color: #000; width: 200px; word-wrap: break-word; background:#ececec; vertical-align:text-top;}
+            #th span{text-align: left; padding: 0 5px 5px 0;}
+            #err {padding: 10px 10px 10px 10px; font-size: 8pt; white-space: nowrap; color: #c00; background:#ececec; vertical-align:text-top;}
+            h1{color: #000 ;font-size: 12pt; font-weight:bold;}
+            h2{color: #000 ;font-size: 10pt; font-weight:bold; text-decoration:underline;}
+            li{list-style:square;}
+    </style>
+    </head>
+    <body>
+    <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" id="maintable">
+      <tr>
+           <td style="padding: 0;"><img src="http://www.nomura.com/emails/13/corporate-email-signaturegraphic.jpg" id="banner" alt="Nomura" /></td>
+      </tr>
+      <tr>
+            <td align="right">For internal use only. Do not redistribute</td>
+      </tr>
+      <tr>
+           <th style="text-align: left; padding: 10px 20px 10px 10px; font-size: 14pt; font-weight: bold; color: #000; background:#CCCCCC; width:100%; -webkit-text-size- adjust:250%;" class="heading" width="100%">
+           <span style="color: #000; font-size: 12pt; font-weight:bold; -webkit-text-size-adjust:250%;" class="date">Peoplesoft Automated Test Run - Infrastructure Test Pack  
+           <br/>   Environment : """ + strEnv + """
+                    </span>
+            </th>
+      </tr>""" + str(SUBCONTENT) + """        </td>
+      </tr>
+      <tr>
+            <td style="padding: 10px 20px 10px 10px; 10px; font-size: 10pt; color: #000; -webkit-text-size-adjust:250%;">
+            </td>
+      </tr>
+
+
+    </table>   
+    </body>
+    </html>""", 'html')
+    msg['Subject'] = strSubject
+    msg['From'] = os.environ['EmailFrom']
+    msg['To'] = os.environ['EmailTo']
+
+    s = smtplib.SMTP('mailhost.***.com')
+    s.sendmail(os.environ['EmailFrom'], os.environ['EmailTo'], msg.as_string())
+    s.quit()
+
+
+
+

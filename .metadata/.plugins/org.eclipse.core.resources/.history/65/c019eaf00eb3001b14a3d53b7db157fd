@@ -1,0 +1,32 @@
+package com.qa.testcases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import com.qa.utilities.TestUtils;
+import com.qa.utilities.WebDriverListener;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", TestUtils.WORKSAPCE_PATH + "//drivers//chromedriver.exe");
+		WebDriver 	driver = new ChromeDriver();
+		ChromeOptions	chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--start-maximized");
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+
+		driver.manage().timeouts().implicitlyWait(TestUtils.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(TestUtils.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+
+		driver.get("https://wallethub.com/join/light");
+
+
+	}
+
+}

@@ -1,0 +1,128 @@
+import pandas as pd
+import os
+import datetime
+import xlrd
+from pathlib import Path
+from sqlalchemy import create_engine,types
+from robot.libraries.BuiltIn import BuiltIn
+import xlwt
+from openpyxl import *
+import logging
+
+class TestData:
+
+    def GetCellData(self,strSheetName,ColumnName,strTestCase):
+        strExcelName=(os.environ['DataSheet'])
+        strProjectDir=(os.environ['ProjectDir'])
+         #strTestCase=(os.environ['TestCase'])
+        logging.info(strExcelName)
+        logging.info(strProjectDir)
+        logging.info(strProjectDir + '\\TestData\\' + strExcelName + ".xlsx")
+        logging.info(strTestCase)
+
+        strIteration = int(BuiltIn().get_variable_value('${intCurItr}'))
+        logging.info(strIteration)
+
+        df1 = pd.read_excel(strProjectDir+'\\TestData\\'+strExcelName+".xlsx", sheet_name= strSheetName ,dtype=str)
+        df1 = df1.query('TestCase== "' + str(strTestCase) + '" & Iteration == "' + str(strIteration) + '"')
+        df2 = df1.set_index("TestCase", drop = False)
+        df3=df2.loc[strTestCase,ColumnName]
+        print(df3)
+        return df3
+
+    def WriteCell(self,ColumnName,ColumnValue,strTestCase):
+        strExcelName =  (os.environ['DataSheet'])
+        strProjectDir =  (os.environ['ProjectDir'])
+        #strTestCase =  (os.environ['TestCase'])
+        strIteration = int(BuiltIn().get_variable_value('${intCurItr}'))
+        wb = load_workbook(strProjectDir + "\\TestData\\" + strExcelName + ".xlsx")
+        ws = wb["OutputData"]
+
+        intColIndex=1
+        for cols in ws.iter_cols():
+            if str(ColumnName).upper() == str(cols[0].value).upper():
+                break
+            intColIndex=intColIndex+1
+
+        intRowindex =  1
+        for row in ws.iter_rows():
+            strOutputTestCaseName=str(row[0].value)
+
+            if (str(strOutputTestCaseName)).upper() == (str(strTestCase)).upper():
+                strOutputIteration = str(row[1].value)
+                if ((str(strOutputIteration)) == (str(strIteration))):
+                    break
+            intRowindex =intRowindex+ 1
+
+        ws.cell(intRowindex,intColIndex).value= ColumnValue
+        wb.save(strProjectDir + '/TestData/' + strExcelName + ".xlsx")
+
+    def GetTestIteration(self,strTestCaseName, strIteration):
+        strProjectDir=(os.environ['ProjectDir'])
+        #strProjectDir = "C://Temp//NDM_Robot"
+        strExcelName="RunManager"
+        strSheetName=os.environ['Region']
+        #strSheetName = 'EMEA'
+        strTestCase=strTestCaseName
+        df1 = pd.read_excel(strProjectDir+'/Config/'+strExcelName+".xlsx", sheet_name= strSheetName )
+        engine = create_engine('sqlite://', echo=False)
+        df1.to_sql('RunManagerDB', engine, if_exists='replace', index=False)
+        dbInfo_TestItr = """ SELECT """+ strIteration +"""
+                FROM RunManagerDB
+                WHERE TestCase='"""+strTestCase+"""' """
+        DbInfo_TestItr_Result = engine.execute(dbInfo_TestItr)
+        DbInfo_Test_Itr_Result = pd.DataFrame(list(DbInfo_TestItr_Result), columns=[strIteration])
+        print(DbInfo_Test_Itr_Result)
+        lstTestItr = DbInfo_Test_Itr_Result.values.tolist()
+        if strIteration == 'Start_Iteration':
+            return int(lstTestItr[0][0])
+        elif strIteration == 'End_Iteration':
+            return int(lstTestItr[0][0])+1
+
+    def FetchXPID(self) :
+        XPID = os.environ.get("USERNAME")
+        return XPID
+
+    def get_colmn_name(self,strSheetName):
+        strExcelName = os.environ['DataSheet']
+        strProjectDir = os.environ['ProjectDir']
+        df = pd.read_excel(strProjectDir + '/TestData/' + strExcelName + ".xlsx", sheet_name=strSheetName, dtype=str)
+        return df.columns.tolist()
+
+
+    def WriteEmailLog(self,strTestCase,strComment):
+        #os.environ['EmailLog']="D:\Japan\Results\EmailLog.xlsx"
+        #strIteration=2
+        strExcelName =  (os.environ['EmailLog'])
+        strIteration = int(BuiltIn().get_variable_value('${intCurItr}'))
+
+        wb = load_workbook(strExcelName)
+        ws = wb["EmailLog"]
+
+        intRowFound = 0
+        intLastRow=0
+        for row in ws.iter_rows():
+            strOutputTestCaseName = str(row[0].value)
+
+            if (str(strOutputTestCaseName)).upper() == (str(strTestCase)).upper():
+                strOutputIteration = str(row[1].value)
+                if ((str(strOutputIteration)) == (str(strIteration))):
+                    intRowFound=intLastRow
+                    break
+            intLastRow=intLastRow+1
+
+        if intRowFound==0:
+            intLastRow=intLastRow+1
+            ws.cell(column=1,row=intLastRow).value=strTestCase
+            ws.cell(column=2, row=intLastRow).value = strIteration
+            ws.cell(column=3, row=intLastRow).value = strComment
+        else:
+            intRowFound=intLastRow+1
+            last_col = 10
+            while ws.cell(column=last_col, row=intRowFound).value is None and last_col > 0:
+                last_col -= 1
+            ws.cell(intRowFound, last_col + 1).value = strComment
+
+        wb.save(strExcelName)
+        wb.close()
+
