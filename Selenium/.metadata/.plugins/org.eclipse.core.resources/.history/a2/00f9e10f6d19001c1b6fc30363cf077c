@@ -1,0 +1,89 @@
+package com.qa.testcases;
+
+import java.util.LinkedList;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import com.qa.utilities.*;
+
+
+public class TelephoneDialPadTestCases {
+	LinkedList<String> combos;
+	
+	@BeforeSuite(alwaysRun = true)
+	public void setUp() {
+		// initializaton();
+		combos=TelephoneDialPad.retrieveCombinations("");
+		
+	}
+	@Test(groups = { "Negative" })
+	public void TC001_DigitisBlank() {
+		ExcelUtils.setExcelFile("C:\\Users\\Ashwini\\Desktop\\Selenium\\DialPad\\src\\main\\java\\com\\qa\\testdata\\TestData.xlsx","TestData");
+
+		sTestCaseName = this.toString();
+
+		// From above method we get long test case name including package and class name etc.
+
+		// The below method will refine your test case name, exactly the name use have used
+
+		sTestCaseName = ExcelUtils.getTestCaseName(this.toString());
+
+	// Fetching the Test Case row number from the Test Data Sheet
+
+	// Getting the Test Case name to get the TestCase row from the Test Data Excel sheet
+
+		iTestCaseRow = ExcelUtils.getRowContains(sTestCaseName,0);
+
+	Object[][] testObjArray = ExcelUtils.getTableArray("D://ToolsQA//OnlineStore//src//testData//TestData.xlsx","Sheet1",iTestCaseRow);
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+	}
+	@Test(groups = { "Positive" })
+	public void TC002_DigitStringHasOnlyOneDigit() {
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+	}
+	@Test(groups = { "Positive" })
+	public void TC003_DigitStringHasTwoDigit() {
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+				
+	}
+
+	
+}
+
+//	@Test(groups = { "Functionality" })
+//	public void TC002_SelectFlightOption() {
+//		homepage.selectFlightOption();
+//	}
+//
+//	@Test(groups = { "Simple", "UI" })
+//	public void TC003_CheckifLogoisPresent() {
+//		boolean flag = homepage.isLogoDisplayed();
+//		Assert.assertTrue(flag);
+//	}
+//
+//	@Test
+//	public void TC004_SelectFlightOption() {
+//		homepage.selectFlightOption();
+//	}
+//
+//	@AfterSuite(alwaysRun = true)
+//	public void tearDown() {
+//		// FormatResult();
+//		tearDownMain();
+//	}
+
+

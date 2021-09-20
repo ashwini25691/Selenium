@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="10" passed="10" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-09-20T05:28:14Z" name="RegressionSuite" finished-at="2021-09-20T05:28:16Z" duration-ms="1782">
+    <groups>
+      <group name="Negative">
+        <method signature="TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC001_DigitisBlank" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+      </group> <!-- Negative -->
+      <group name="Positive">
+        <method signature="TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC002_DigitStringHasOnlyOneDigit" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC003_DigitStringHasTwoDigitBothWithThreeAlphabets" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC004_DigitEnterIs1" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC005_DigitEnterIs0" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC007_DigitStringHasTwoDigitBothWithFourAlphabets" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+        <method signature="TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" name="TC010_DigitStringHasMoreThan2Digit" class="com.qa.testcases.TelephoneDialPadTestCases"/>
+      </group> <!-- Positive -->
+    </groups>
+    <test started-at="2021-09-20T05:28:14Z" name="Testing" finished-at="2021-09-20T05:28:16Z" duration-ms="1782">
+      <class name="com.qa.testcases.TelephoneDialPadTestCases">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:14Z" name="setUp" finished-at="2021-09-20T10:58:14Z" duration-ms="15" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="TC001_DigitisBlank(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:14Z" name="TC001_DigitisBlank" finished-at="2021-09-20T10:58:15Z" duration-ms="944" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC001_DigitisBlank -->
+        <test-method signature="TC002_DigitStringHasOnlyOneDigit(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:15Z" name="TC002_DigitStringHasOnlyOneDigit" finished-at="2021-09-20T10:58:16Z" duration-ms="152" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC002_DigitStringHasOnlyOneDigit -->
+        <test-method signature="TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC003_DigitStringHasTwoDigitBothWithThreeAlphabets" finished-at="2021-09-20T10:58:16Z" duration-ms="90" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC003_DigitStringHasTwoDigitBothWithThreeAlphabets -->
+        <test-method signature="TC004_DigitEnterIs1(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC004_DigitEnterIs1" finished-at="2021-09-20T10:58:16Z" duration-ms="75" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC004_DigitEnterIs1 -->
+        <test-method signature="TC005_DigitEnterIs0(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC005_DigitEnterIs0" finished-at="2021-09-20T10:58:16Z" duration-ms="80" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC005_DigitEnterIs0 -->
+        <test-method signature="TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets" finished-at="2021-09-20T10:58:16Z" duration-ms="78" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets -->
+        <test-method signature="TC007_DigitStringHasTwoDigitBothWithFourAlphabets(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC007_DigitStringHasTwoDigitBothWithFourAlphabets" finished-at="2021-09-20T10:58:16Z" duration-ms="68" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlphabets(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC007_DigitStringHasTwoDigitBothWithFourAlphabets -->
+        <test-method signature="TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter" finished-at="2021-09-20T10:58:16Z" duration-ms="84" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter -->
+        <test-method signature="TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter" finished-at="2021-09-20T10:58:16Z" duration-ms="61" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter -->
+        <test-method signature="TC010_DigitStringHasMoreThan2Digit(java.lang.reflect.Method)[pri:0, instance:com.qa.testcases.TelephoneDialPadTestCases@58ea606c]" started-at="2021-09-20T10:58:16Z" name="TC010_DigitStringHasMoreThan2Digit" finished-at="2021-09-20T10:58:16Z" duration-ms="79" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang.reflect.Method) throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC010_DigitStringHasMoreThan2Digit -->
+      </class> <!-- com.qa.testcases.TelephoneDialPadTestCases -->
+    </test> <!-- Testing -->
+  </suite> <!-- RegressionSuite -->
+</testng-results>

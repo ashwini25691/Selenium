@@ -1,1 +1,0 @@
-start cmd.exe /k "cd venv\Scripts & activate.bat & cd..\.. & python Config\config.py"

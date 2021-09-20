@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-RegressionSuite" class="navigator-link">
+              <span class="suite-name border-passed">RegressionSuite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-RegressionSuite" class="navigator-link ">
+                    <span>C:\Users\Ashwini\Desktop\Selenium\DialPad\src\main\resources\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-RegressionSuite" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-RegressionSuite" class="navigator-link ">
+                    <span>2 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-RegressionSuite" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-RegressionSuite" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-RegressionSuite" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-RegressionSuite" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">10 methods,   10 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-RegressionSuite" class="hide-methods passed suite-RegressionSuite"> (hide)</a> <!-- hide-methods passed suite-RegressionSuite -->
+                      <a href="#" panel-name="suite-RegressionSuite" class="show-methods passed suite-RegressionSuite"> (show)</a> <!-- show-methods passed suite-RegressionSuite -->
+                    </span>
+                    <div class="method-list-content passed suite-RegressionSuite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC001_DigitisBlank(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) ...)">TC001_DigitisBlank(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC002_DigitStringHasOnlyOneDigit(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.re...)">TC002_DigitStringHasOnlyOneDigit(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.re...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlph...)">TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlph...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC004_DigitEnterIs1(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)...)">TC004_DigitEnterIs1(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC005_DigitEnterIs0(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)...)">TC005_DigitEnterIs0(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourA...)">TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourA...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC007_DigitStringHasTwoDigitBothWithFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlpha...)">TC007_DigitStringHasTwoDigitBothWithFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlpha...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialC...)">TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialC...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialC...)">TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialC...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-RegressionSuite" title="com.qa.testcases.TelephoneDialPadTestCases" class="method navigator-link" hash-for-method="TC010_DigitStringHasMoreThan2Digit(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang....)">TC010_DigitStringHasMoreThan2Digit(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang....)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-RegressionSuite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-RegressionSuite" class="panel RegressionSuite">
+          <div class="suite-RegressionSuite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.qa.testcases.TelephoneDialPadTestCases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC001_DigitisBlank(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) ...)">
+                  </a> <!-- TC001_DigitisBlank(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) ...) -->
+                  <span class="method-name">TC001_DigitisBlank</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC002_DigitStringHasOnlyOneDigit(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.re...)">
+                  </a> <!-- TC002_DigitStringHasOnlyOneDigit(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.re...) -->
+                  <span class="method-name">TC002_DigitStringHasOnlyOneDigit</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlph...)">
+                  </a> <!-- TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlph...) -->
+                  <span class="method-name">TC003_DigitStringHasTwoDigitBothWithThreeAlphabets</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC004_DigitEnterIs1(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)...)">
+                  </a> <!-- TC004_DigitEnterIs1(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)...) -->
+                  <span class="method-name">TC004_DigitEnterIs1</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC005_DigitEnterIs0(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)...)">
+                  </a> <!-- TC005_DigitEnterIs0(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)...) -->
+                  <span class="method-name">TC005_DigitEnterIs0</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourA...)">
+                  </a> <!-- TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourA...) -->
+                  <span class="method-name">TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC007_DigitStringHasTwoDigitBothWithFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlpha...)">
+                  </a> <!-- TC007_DigitStringHasTwoDigitBothWithFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlpha...) -->
+                  <span class="method-name">TC007_DigitStringHasTwoDigitBothWithFourAlphabets</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlphabets(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialC...)">
+                  </a> <!-- TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialC...) -->
+                  <span class="method-name">TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialC...)">
+                  </a> <!-- TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialC...) -->
+                  <span class="method-name">TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC010_DigitStringHasMoreThan2Digit(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang....)">
+                  </a> <!-- TC010_DigitStringHasMoreThan2Digit(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang....) -->
+                  <span class="method-name">TC010_DigitStringHasMoreThan2Digit</span>
+                  <span class="parameters">(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang.reflect.Method) throws java.lang.Exception)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-RegressionSuite-class-passed -->
+        </div> <!-- panel RegressionSuite -->
+        <div panel-name="test-xml-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\Ashwini\Desktop\Selenium\DialPad\src\main\resources\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite thread-count=&quot;3&quot; parallel=&quot;classes&quot; name=&quot;RegressionSuite&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;com.qa.reports.ExtentReporterNG&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test name=&quot;Testing&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.qa.testcases.TelephoneDialPadTestCases&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Testing --&gt;
+&lt;/suite&gt; &lt;!-- RegressionSuite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for RegressionSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Testing (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for RegressionSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">Negative</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC001_DigitisBlank</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">Positive</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC002_DigitStringHasOnlyOneDigit</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC003_DigitStringHasTwoDigitBothWithThreeAlphabets</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC004_DigitEnterIs1</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC005_DigitEnterIs0</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC007_DigitStringHasTwoDigitBothWithFourAlphabets</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC010_DigitStringHasMoreThan2Digit</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for RegressionSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_RegressionSuite');
+function tableData_RegressionSuite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(10);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'TC001_DigitisBlank')
+data.setCell(0, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(0, 3, 944);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'TC002_DigitStringHasOnlyOneDigit')
+data.setCell(1, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(1, 3, 152);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'TC003_DigitStringHasTwoDigitBothWithThreeAlphabets')
+data.setCell(2, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(2, 3, 90);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter')
+data.setCell(3, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(3, 3, 84);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'TC005_DigitEnterIs0')
+data.setCell(4, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(4, 3, 80);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'TC010_DigitStringHasMoreThan2Digit')
+data.setCell(5, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(5, 3, 79);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets')
+data.setCell(6, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(6, 3, 78);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'TC004_DigitEnterIs1')
+data.setCell(7, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(7, 3, 75);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'TC007_DigitStringHasTwoDigitBothWithFourAlphabets')
+data.setCell(8, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(8, 3, 68);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter')
+data.setCell(9, 2, 'com.qa.testcases.TelephoneDialPadTestCases')
+data.setCell(9, 3, 61);
+window.suiteTableData['RegressionSuite']= { tableData: data, tableDiv: 'times-div-RegressionSuite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 1 seconds</span>
+              <div id="times-div-RegressionSuite">
+              </div> <!-- times-div-RegressionSuite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for RegressionSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-RegressionSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.qa.testcases.TelephoneDialPadTestCases</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="test-method">
+                <span class="method-name">TC001_DigitisBlank(public void com.qa.testcases.TelephoneDialPadTestCases.TC001_DigitisBlank(java.lang.reflect.Method) ...)</span>
+                <span class="method-start">34 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC002_DigitStringHasOnlyOneDigit(public void com.qa.testcases.TelephoneDialPadTestCases.TC002_DigitStringHasOnlyOneDigit(java.lang.re...)</span>
+                <span class="method-start">981 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC003_DigitStringHasTwoDigitBothWithThreeAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC003_DigitStringHasTwoDigitBothWithThreeAlph...)</span>
+                <span class="method-start">1137 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC004_DigitEnterIs1(public void com.qa.testcases.TelephoneDialPadTestCases.TC004_DigitEnterIs1(java.lang.reflect.Method)...)</span>
+                <span class="method-start">1230 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC005_DigitEnterIs0(public void com.qa.testcases.TelephoneDialPadTestCases.TC005_DigitEnterIs0(java.lang.reflect.Method)...)</span>
+                <span class="method-start">1312 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC006_DigitStringHasTwoDigitWithThreeAndFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC006_DigitStringHasTwoDigitWithThreeAndFourA...)</span>
+                <span class="method-start">1396 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC007_DigitStringHasTwoDigitBothWithFourAlphabets(public void com.qa.testcases.TelephoneDialPadTestCases.TC007_DigitStringHasTwoDigitBothWithFourAlpha...)</span>
+                <span class="method-start">1479 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC008_DigitStringHasOneDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC008_DigitStringHasOneDigitAlongWIthSpecialC...)</span>
+                <span class="method-start">1555 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC009_DigitStringHasTwoDigitAlongWIthSpecialCharachter(public void com.qa.testcases.TelephoneDialPadTestCases.TC009_DigitStringHasTwoDigitAlongWIthSpecialC...)</span>
+                <span class="method-start">1647 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TC010_DigitStringHasMoreThan2Digit(public void com.qa.testcases.TelephoneDialPadTestCases.TC010_DigitStringHasMoreThan2Digit(java.lang....)</span>
+                <span class="method-start">1714 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

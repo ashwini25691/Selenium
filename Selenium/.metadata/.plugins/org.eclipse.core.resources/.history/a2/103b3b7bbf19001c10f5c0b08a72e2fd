@@ -1,0 +1,93 @@
+package com.qa.testcases;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.LinkedList;
+
+import org.testng.IInvokedMethod;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import com.qa.utilities.*;
+
+
+public class TelephoneDialPadTestCases {
+	LinkedList<String> combos;
+	
+	
+	@BeforeSuite(alwaysRun = true)
+	public void setUp() {
+		// initializaton();
+		combos=TelephoneDialPad.retrieveCombinations("");
+		
+	}
+	@Test
+	public void TC001_DigitisBlank(Method method) throws Exception {	
+		
+		File f= new File("testdata.xlsx");
+		System.out.println(f.getAbsolutePath());
+		System.out.println(f.getPath());
+
+
+		Object[][] testObjArray = ExcelUtils.getTableArray("C:\\Users\\Ashwini\\Desktop\\Selenium\\DialPad\\src\\main\\java\\com\\qa\\testdata\\TestData.xlsx","TestData",method.getName());
+		combos=TelephoneDialPad.retrieveCombinations((String) testObjArray[0][0]);
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+	}
+	@Test
+	public void TC002_DigitStringHasOnlyOneDigit(Method method) throws Exception {
+		Object[][] testObjArray = ExcelUtils.getTableArray("C:\\Users\\Ashwini\\Desktop\\Selenium\\DialPad\\src\\main\\java\\com\\qa\\testdata\\TestData.xlsx","TestData",method.getName());
+		combos=TelephoneDialPad.retrieveCombinations((String) testObjArray[0][0]);
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+	}
+	@Test
+	public void TC003_DigitStringHasTwoDigit(Method method) throws Exception {
+		Object[][] testObjArray = ExcelUtils.getTableArray("C:\\Users\\Ashwini\\Desktop\\Selenium\\DialPad\\src\\main\\java\\com\\qa\\testdata\\TestData.xlsx","TestData",method.getName());
+		combos=TelephoneDialPad.retrieveCombinations((String) testObjArray[0][0]);
+		for (String s:combos)
+		{
+			System.out.println(s);
+		}
+				
+	}
+
+	
+}
+
+//	@Test(groups = { "Functionality" })
+//	public void TC002_SelectFlightOption() {
+//		homepage.selectFlightOption();
+//	}
+//
+//	@Test(groups = { "Simple", "UI" })
+//	public void TC003_CheckifLogoisPresent() {
+//		boolean flag = homepage.isLogoDisplayed();
+//		Assert.assertTrue(flag);
+//	}
+//
+//	@Test
+//	public void TC004_SelectFlightOption() {
+//		homepage.selectFlightOption();
+//	}
+//
+//	@AfterSuite(alwaysRun = true)
+//	public void tearDown() {
+//		// FormatResult();
+//		tearDownMain();
+//	}
+
+
